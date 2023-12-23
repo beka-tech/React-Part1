@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./index.css";
-const message = ["First", "Second", "Third"];
+const message = ["First ", "Second ", "Third "];
 function App() {
   const [step, setStep] = useState(1);
+  const [test, setTest] = useState({ name: "Beka" });
 
   function handlePrevious() {
     if (step > 1) {
@@ -13,6 +14,7 @@ function App() {
     if (step < 3) {
       setStep(step + 1);
     }
+    setTest({ name: "Aman" });
   }
   return (
     <div className="steps">
@@ -22,7 +24,8 @@ function App() {
         <div className={step >= 3 ? "active" : ""}>3</div>
       </div>
       <p className="message">
-        Step {step}: {message[step - 1]}
+        Step {step} : {message[step - 1]}
+        {test.name}
       </p>
       <div className="buttons">
         <button
