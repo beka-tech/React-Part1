@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./index.css";
+
 const message = ["First ", "Second ", "Third "];
+
 function App() {
   const [step, setStep] = useState(1);
   //const [test, setTest] = useState({ name: "Beka" });
