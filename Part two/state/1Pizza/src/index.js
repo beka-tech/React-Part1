@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 const pizzaData = [
   {
-    name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
+    name: "Focaccia",
+
     price: 6,
     photoName: "pizzas/focaccia.jpg",
     soldOut: false,
