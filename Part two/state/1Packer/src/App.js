@@ -2,22 +2,20 @@
 
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Charger", quantity: 1, packed: true },
-];
 export default function App() {
-  // const [isopen, setIsopen] = useState(true);
+  const [items, setItems] = useState([]);
 
-  // function Close() {
-  //   setIsopen(false);
-  // }
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((items) => items.id !== id));
+  }
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form handleAddItems={handleAddItems} />
+      <PackingList items={items} handleDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
@@ -26,13 +24,16 @@ export default function App() {
 function Logo() {
   return <h1>Far From Home</h1>;
 }
-function Form() {
+
+function Form({ handleAddItems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
+
     if (!description) return;
+
     const newItem = {
       description,
       quantity,
@@ -43,9 +44,13 @@ function Form() {
         .padStart(2, "0")}`,
     };
     console.log(newItem);
+
+    handleAddItems(newItem);
+
     setDescription("");
-    setQuantity("");
+    setQuantity(1);
   }
+
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your tips</h3>
@@ -76,19 +81,19 @@ function Form() {
   );
 }
 
-function PackingList() {
+function PackingList({ items, handleDeleteItem }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
-          <Item item={item} key={item.id} />
+        {items.map((item) => (
+          <Item item={item} handleDeleteItem={handleDeleteItem} key={item.id} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, handleDeleteItem }) {
   const [isopen, setIsopen] = useState(true);
   return (
     <>
@@ -98,7 +103,7 @@ function Item({ item }) {
             {item.quantity}
             {item.description}
           </span>
-          <button onClick={() => setIsopen((Is) => !Is)}> ❌ &times;</button>
+          <button onClick={() => handleDeleteItem(item.id)}> ❌ &times;</button>
         </li>
       ) : (
         ""

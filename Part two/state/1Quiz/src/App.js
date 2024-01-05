@@ -59,9 +59,13 @@ function FlashCards() {
           onMouseLeave={() => handleClick(null)}
           className={question.id === selectedId ? "selected" : ""} //style
         >
-          <p>
-            {question.id === selectedId ? question.answer : question.question}
-          </p>
+          <>
+            {question.id === selectedId ? (
+              <p>{question.answer}</p>
+            ) : (
+              <p>{question.question}</p>
+            )}
+          </>
         </div>
       ))}
     </div>
