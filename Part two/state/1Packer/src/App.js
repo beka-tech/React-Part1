@@ -11,11 +11,22 @@ export default function App() {
   function handleDeleteItem(id) {
     setItems((items) => items.filter((items) => items.id !== id));
   }
+  function handleToggleItems(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
   return (
     <div className="app">
       <Logo />
       <Form handleAddItems={handleAddItems} />
-      <PackingList items={items} handleDeleteItem={handleDeleteItem} />
+      <PackingList
+        items={items}
+        handleDeleteItem={handleDeleteItem}
+        onToggleItems={handleToggleItems}
+      />
       <Stats />
     </div>
   );
@@ -81,34 +92,37 @@ function Form({ handleAddItems }) {
   );
 }
 
-function PackingList({ items, handleDeleteItem }) {
+function PackingList({ items, handleDeleteItem, onToggleItems }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} handleDeleteItem={handleDeleteItem} key={item.id} />
+          <Item
+            item={item}
+            handleDeleteItem={handleDeleteItem}
+            onToggleItems={onToggleItems}
+            key={item.id}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item, handleDeleteItem }) {
-  const [isopen, setIsopen] = useState(true);
+function Item({ item, handleDeleteItem, onToggleItems }) {
   return (
-    <>
-      {isopen ? (
-        <li>
-          <span style={item.packed ? { textDecoration: "line-through" } : {}}>
-            {item.quantity}
-            {item.description}
-          </span>
-          <button onClick={() => handleDeleteItem(item.id)}> ❌ &times;</button>
-        </li>
-      ) : (
-        ""
-      )}
-    </>
+    <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onToggleItems(item.id)}
+      />
+      <span style={item.packed ? { textDecoration: "line-through" } : {}}>
+        {item.quantity}
+        {item.description}
+      </span>
+      <button onClick={() => handleDeleteItem(item.id)}> ❌ &times;</button>
+    </li>
   );
 }
 
