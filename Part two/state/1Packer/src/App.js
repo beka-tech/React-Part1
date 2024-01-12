@@ -27,7 +27,7 @@ export default function App() {
         handleDeleteItem={handleDeleteItem}
         onToggleItems={handleToggleItems}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -49,10 +49,7 @@ function Form({ handleAddItems }) {
       description,
       quantity,
       packed: false,
-      id: `${new Date().getMinutes().toString().padStart(2, "0")}${new Date()
-        .getSeconds()
-        .toString()
-        .padStart(2, "0")}`,
+      id: Math.floor(Math.random() * 1000) + 1001,
     };
     console.log(newItem);
 
@@ -126,10 +123,17 @@ function Item({ item, handleDeleteItem, onToggleItems }) {
   );
 }
 
-function Stats() {
+function Stats({ items, item }) {
+  const numitem = items.length;
+  const packednum = items.filter((item) => item.packed).length;
+  const percentage = (packednum / numitem) * 100;
+
   return (
     <footer className="stats">
-      <em>You Have X items on Your list, and You aleready packed x (X%)</em>
+      <em>
+        You Have {numitem} items on Your list, and You aleready packed{" "}
+        {packednum} and {percentage}%
+      </em>
     </footer>
   );
 }

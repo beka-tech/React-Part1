@@ -1,8 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 const pizzaData = [
   {
+    id: 1,
     ingredients: "Bread with italian olive oil and rosemary",
     name: "Focaccia",
 
@@ -11,13 +13,15 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 2,
     name: "Pizza Margherita",
     ingredients: "Tomato and mozarella",
     price: 10,
     photoName: "pizzas/margherita.jpg",
-    soldOut: false,
+    soldOut: true,
   },
   {
+    id: 3,
     name: "Pizza Spinaci",
     ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
     price: 12,
@@ -25,6 +29,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 4,
     name: "Pizza Funghi",
     ingredients: "Tomato, mozarella, mushrooms, and onion",
     price: 12,
@@ -32,6 +37,7 @@ const pizzaData = [
     soldOut: false,
   },
   {
+    id: 5,
     name: "Pizza Salamino",
     ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
@@ -39,6 +45,7 @@ const pizzaData = [
     soldOut: true,
   },
   {
+    id: 6,
     name: "Pizza Prosciutto",
     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: 18,
@@ -68,18 +75,24 @@ function Header() {
 function Menu() {
   const pizzas = pizzaData;
   const numPizzas = pizzas.length;
+  const sold = pizzaData.filter((pizza) => pizza.soldOut === true);
+  const soldnum = sold.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
+      <input type="text" placeholder="item..."></input>
       {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzaData.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
+            <Pizza pizzaObj={pizza} key={pizza.id} />
           ))}
         </ul>
       ) : (
         <p>no data</p>
       )}
+      <p>You Have {numPizzas} Pizza</p>
+      <p>You Sold {soldnum} Pizza</p>
     </main>
   );
 }
@@ -109,7 +122,10 @@ function Order({ closehour }) {
 }
 
 function Pizza({ pizzaObj }) {
-  // if (pizzaObj.soldOut) return null;
+  const [pizza, setPizza] = useState([]);
+  function handleDeleteItem(id) {
+    setPizza((pizzaData) => pizzaData.filter((pizza) => pizza.id !== id));
+  }
   return (
     <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""} `}>
       <img src={pizzaObj.photoName} alt="spinaci"></img>
@@ -117,6 +133,10 @@ function Pizza({ pizzaObj }) {
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
         <span>{pizzaObj.soldOut ? "soldOut Yes" : pizzaObj.price}</span>
+        <input type="checkbox" />
+        <button onClick={() => handleDeleteItem(pizzaObj.id)} className="btn">
+          Delete
+        </button>
       </div>
     </li>
   );
