@@ -1,5 +1,3 @@
-// import React, { useState } from "react";
-
 import { useState } from "react";
 
 export default function App() {
@@ -44,7 +42,6 @@ function Form({ handleAddItems }) {
     e.preventDefault();
 
     if (!description) return;
-
     const newItem = {
       description,
       quantity,
