@@ -7,7 +7,6 @@ export default function App() {
     </div>
   );
 }
-
 const questions = [
   {
     id: 3457,
@@ -47,12 +46,6 @@ function FlashCards() {
   function handleclick(id) {
     setSelectedID(id !== selectedID ? id : null);
   }
-  // function handleDelete(id) {
-  //   setSelectedID((questions) =>
-  //     questions.filter((questions) => questions.id !== id)
-  //   );
-  // }
-
   return (
     <div className="flashcards">
       {questions.map((question) => (
@@ -60,7 +53,6 @@ function FlashCards() {
           key={question.id}
           onClick={() => handleclick(question.id)}
           onMouseLeave={() => handleclick(null)}
-          // onClick={() => handleDelete(question.id)}
         >
           <>
             {question.id === selectedID ? (
