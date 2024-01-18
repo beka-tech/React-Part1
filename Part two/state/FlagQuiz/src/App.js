@@ -48,6 +48,7 @@ function FlashCards() {
   }
   return (
     <div className="flashcards">
+      <p>Flag Quiz </p>
       {questions.map((question) => (
         <div
           key={question.id}
