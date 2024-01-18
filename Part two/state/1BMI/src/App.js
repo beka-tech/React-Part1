@@ -15,12 +15,20 @@ function BMICalculator() {
 
   const bmix = (Weight / Height ** 2) * 10000;
   const bmi = Math.floor(bmix);
+  function handleRest() {
+    setHeight(0);
+    setWeight(0);
+  }
   return (
     <>
       <EnterWeight Weight={Weight} onWeight={setWeight} />
       <EnterHeight Height={Height} onHeight={setHeight} />
-      <Out BMI={bmi} />
-      <Reset />
+      {Weight > 0 && Height > 0 && (
+        <>
+          <Out BMI={bmi} />
+          <Reset handleRest={handleRest} />
+        </>
+      )}
     </>
   );
 }
@@ -66,10 +74,10 @@ function Out({ BMI }) {
   );
 }
 
-function Reset({ bmi }) {
+function Reset({ handleRest }) {
   return (
     <>
-      <p>Rest</p>
+      <button onClick={handleRest}> Rest </button>
     </>
   );
 }
