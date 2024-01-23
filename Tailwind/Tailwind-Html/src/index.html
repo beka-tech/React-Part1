@@ -6,25 +6,29 @@
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
-    <!--Navbar-->
     <nav class="relative container mx-auto p-6">
-      <!--Flex Container-->
-      <div class="flex items-center justify-between pb-10">
-        <!--LOGO-->
+      <!-- Flex container -->
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
         <div class="pt-2">
-          <img src="img/logo.svg" alt="" class="items-center" />
+          <img
+            src="img/logo.svg"
+            alt="logo"
+            style="max-width: 200px; max-height: 200px"
+          />
         </div>
-        <!--Menu-->
-        <div class="hidden md:flex space-x-6  " >
-          <a href="#" class="hover:text-orange-600">Pricing</a>
-          <a href="#" class="hover:text-orange-600">Product</a>
-          <a href="#" class="hover:text-orange-600">About</a>
-          <a href="#" class="hover:text-orange-600">Careers</a>
-          <a href="#" class="hover:text-orange-600">Community</a>
-         <a href="#" class=" p-3 px-6 pt-2 text-white bg-orange-600 rounded-full baseline hover:bg-orange-400">
-          Get Started
-         </a>
-          </div>
+        <!-- Menu Items -->
+        <div class="hidden space-x-6 md:flex">
+          <a href="#" class="hover:text-darkGrayishBlue">About</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Work</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Testimonials</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Contact</a>
+          <a href="#"><img src="img/light.svg" /></a>
+          <a
+            href="#"
+            class="hidden p-3 px-6 pt-2 text-blue-950 bg-blue-950 rounded-full baseline hover:bg-blue-950 md:block"
+            >Get Started</a
+          >
         </div>
       </div>
     </nav>
