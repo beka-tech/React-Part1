@@ -9,6 +9,7 @@ function App() {
 
   function handleDelete(id) {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
+    alert("Deleted ");
   }
   function handleComplete(id) {
     setTodos((todos) =>

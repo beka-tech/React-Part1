@@ -8,11 +8,18 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!inputText) {
+      return;
+    }
     setTodos([
       ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
+      {
+        text: inputText,
+        completed: false,
+        id: Math.floor(Math.random() * 1000),
+      },
     ]);
-    console.log("ka");
+    setInputText("");
   }
 
   function submitTodoHandlerz() {}
@@ -21,7 +28,12 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input onChange={inputTextHandler} type="text" className="todo-input" />
+        <input
+          value={inputText}
+          onChange={inputTextHandler}
+          type="text"
+          className="todo-input"
+        />
         <button
           onChange={submitTodoHandlerz}
           className="todo-button"
