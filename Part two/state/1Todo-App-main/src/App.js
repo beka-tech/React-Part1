@@ -6,10 +6,22 @@ import TodoList from "./components/TodoList";
 function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
+
+  function handleDelete(id) {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  }
+  function handleComplete(id) {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
   return (
     <div className="App">
       <header>
-        <h1>BEKA Todo List </h1>
+        <h1> Todo List </h1>
       </header>
       <Form
         todos={todos}
@@ -17,7 +29,13 @@ function App() {
         inputText={inputText}
         setInputText={setInputText}
       />
-      <TodoList inputText={inputText} />
+      <TodoList
+        todos={todos}
+        setTodos={setTodos}
+        inputText={inputText}
+        handleDelete={handleDelete}
+        handleComplete={handleComplete}
+      />
     </div>
   );
 }

@@ -1,13 +1,24 @@
 import React from "react";
+import Todo from "./Todo";
 
-const TodoList = ({ setInputText }) => {
+function TodoList({ todos, handleDelete, setTodos, handleComplete }) {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        <li> {setInputText}</li>
+        {" "}
+        {todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            text={todo.text}
+            todo={todo}
+            setTodos={setTodos}
+            handleDelete={handleDelete}
+            handleComplete={handleComplete}
+          />
+        ))}
       </ul>
     </div>
   );
-};
+}
 
 export default TodoList;
