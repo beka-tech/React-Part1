@@ -22,7 +22,9 @@ export default function PackingList({
       </ul>
       <div className="action">
         <select>
-          <option></option>
+          <option>SORT BY INPUT ORDER</option>
+          <option>SORT BY INPUT DESCRIPTION</option>
+          <option>SORT BY INPUT PACKED STATUS</option>
         </select>
         <button onClick={() => handleClearItem(item)}>Clear</button>
       </div>
