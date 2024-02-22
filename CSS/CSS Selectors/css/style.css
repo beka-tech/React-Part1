@@ -1,4 +1,17 @@
+/*Element Selector*/
 body {
-  color: rgb(255, 136, 0);
+  color: rgb(26, 255, 0);
   font-size: x-large;
+}
+/*Id Selectors*/
+#second {
+  color: rgb(221, 255, 0);
+}
+/*class Selectors*/
+.gray {
+  color: rgb(255, 71, 71);
+}
+/*Nested Selectors*/
+p i {
+  color: black;
 }
