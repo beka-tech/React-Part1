@@ -29,7 +29,7 @@ function FormAddFriend({ onAddfriend }) {
     onAddfriend(newFriend);
 
     setName("");
-    setImage("https://i.pravatar.cc/48");
+    setImage("");
   }
 
   return (
